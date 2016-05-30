@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'updating a participant' do
   context 'with master of ceremonies privilege' do
-    it 'updates a participant' do
+    it 'updates the participant' do
       create :participant, name: 'Foo Bar'
       when_current_user_is :master_of_ceremonies
       visit participants_url
@@ -14,7 +14,7 @@ describe 'updating a participant' do
     end
   end
   context 'with admin privilege' do
-    it 'updates a participant' do
+    it 'updates the participant' do
       create :participant, name: 'Foo Bar'
       when_current_user_is :admin
       visit participants_url
@@ -26,7 +26,7 @@ describe 'updating a participant' do
     end
   end
   context 'with judge privilege' do
-    it 'does not update a participant' do
+    it 'does not update the participant' do
       create :participant, name: 'Foo Bar'
       when_current_user_is :judge
       visit participants_url

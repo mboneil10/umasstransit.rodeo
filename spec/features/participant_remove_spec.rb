@@ -3,7 +3,7 @@ describe 'removing a participant' do
     create :participant
   end
   context 'with admin privilege' do
-    it 'removes a participant' do
+    it 'removes the participant' do
       when_current_user_is :admin
       visit participants_url
       click_on 'Remove'
@@ -12,7 +12,7 @@ describe 'removing a participant' do
   end
 
   context 'with master of ceremonies privilege' do
-    it 'removes a participant' do
+    it 'removes the participant' do
       when_current_user_is :master_of_ceremonies
       visit participants_url
       click_on 'Remove'
@@ -21,7 +21,7 @@ describe 'removing a participant' do
   end
 
   context 'with judge privilege' do
-    it 'will not remove a participant' do
+    it 'will not remove the participant' do
       when_current_user_is :judge
       visit participants_url
       click_on 'Remove'

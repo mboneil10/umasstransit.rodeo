@@ -4,9 +4,8 @@ describe 'updating a quiz score' do
   before :each do
     create :quiz_score, points_achieved: 50, total_points: 100
   end
-
   context 'with admin privilege' do
-    it 'updates quiz score' do
+    it 'updates the quiz score' do
       when_current_user_is :admin
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '70'
@@ -16,9 +15,8 @@ describe 'updating a quiz score' do
       expect(input.value).to eql '70.0'
     end
   end
-
   context 'with quiz scorer privilege' do
-    it 'updates quiz score' do
+    it 'updates the quiz score' do
       when_current_user_is :quiz_scorer
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '70'
@@ -29,7 +27,7 @@ describe 'updating a quiz score' do
     end
   end
   context 'with judge privilege' do
-    it 'will not update quiz score' do
+    it 'will not update the quiz score' do
       when_current_user_is :judge
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '70'
@@ -37,14 +35,8 @@ describe 'updating a quiz score' do
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
-end
-
-describe 'updating a score' do
-  before :each do
-    create :quiz_score
-  end
-  context'when out of range quiz score' do
-    it 'will not accept negative number' do
+  context'when out of range' do
+    it 'will not accept a negative number' do
       when_current_user_is :admin
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '-14'
@@ -53,9 +45,8 @@ describe 'updating a score' do
       expect(page).to have_text expected
     end
   end
-
-  context'when out of range quiz score' do
-    it 'will not accept positive number greater than total points' do
+  context'when out of range' do
+    it 'will not accept a positive number greater than total points' do
       when_current_user_is :admin
       visit quiz_scores_url
       input = find_field 'quiz_score_total_points'
